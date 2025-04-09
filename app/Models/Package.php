@@ -35,4 +35,25 @@ class Package extends Model
     {
         return $this->hasMany(Action::class);
     }
+
+    //
+
+    public function getName()
+    {
+        return $this->code;
+    }
+
+    public function getStatus()
+    {
+        return [
+            'Beijing Warehouse',
+            'Departed Beijing',
+            'Arrived Ashgabat',
+            'Ashgabat Warehouse',
+            'Preparing',
+            'Ready',
+            'Delivered',
+            'Lost',
+        ][$this->status];
+    }
 }

@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Package;
+use App\Models\Transport;
 use App\Models\User;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -14,13 +16,34 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
-            'name' => 'Administrator',
-            'username' => 'admin',
-            'auth_method' => 0,
-            'is_admin' => 1,
-        ]);
+        User::factory()
+            ->create([
+                'name' => 'Administrator',
+                'username' => 'admin',
+                'auth_method' => 0,
+                'is_admin' => 1,
+            ]);
 
-        User::factory()->count(50)->create();
+        User::factory()
+            ->count(3)
+            ->create([
+                'is_admin' => 1,
+            ]);
+
+        User::factory()
+            ->count(10)
+            ->create();
+
+        Transport::factory()
+            ->count(5)
+            ->create();
+
+        Package::factory()
+            ->count(100)
+            ->create();
+
+        $this->call([
+            ActionSeeder::class,
+        ]);
     }
 }

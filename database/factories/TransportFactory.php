@@ -17,7 +17,11 @@ class TransportFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'code' => str(str()->random(10))->upper(),
+            'note' => fake()->boolean(50)
+                ? fake()->paragraph(fake()->numberBetween(1, 3))
+                : null,
+            'status' => fake()->numberBetween(0, 3),
         ];
     }
 }

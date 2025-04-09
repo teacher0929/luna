@@ -29,4 +29,30 @@ class Transport extends Model
     {
         return $this->hasMany(Action::class);
     }
+
+    //
+
+    public function getName()
+    {
+        return $this->code;
+    }
+
+    public function getStatus()
+    {
+        return [
+            'Beijing Warehouse',
+            'Departed Beijing',
+            'Arrived Ashgabat',
+            'Ashgabat Warehouse',
+        ][$this->status];
+    }
+
+
+    public function getPaymentStatus()
+    {
+        return [
+            'Unpaid',
+            'Paid',
+        ][$this->payment_status];
+    }
 }

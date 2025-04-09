@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('code')->unique();
             $table->text('note')->nullable();
-            $table->unsignedInteger('status')->default(0);
+            $table->unsignedTinyInteger('status')->default(0);
             $table->timestamps();
         });
     }
