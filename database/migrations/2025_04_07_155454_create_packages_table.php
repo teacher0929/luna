@@ -20,7 +20,6 @@ return new class extends Migration {
             $table->double('weight_price')->default(0);
             $table->double('total_price')->default(0);
             $table->text('note')->nullable();
-            $table->unsignedInteger('type')->default(0);
             $table->unsignedInteger('status')->default(0);
             $table->unsignedInteger('payment_status')->default(0);
             $table->timestamps();
