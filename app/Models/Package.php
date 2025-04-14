@@ -56,4 +56,20 @@ class Package extends Model
             'Lost',
         ][$this->status];
     }
+
+    public function getPaymentStatus()
+    {
+        return [
+            'Unpaid',
+            'Paid',
+        ][$this->payment_status];
+    }
+
+    public function getPaymentStatusColor()
+    {
+        return [
+            'danger',
+            'success',
+        ][$this->payment_status];
+    }
 }

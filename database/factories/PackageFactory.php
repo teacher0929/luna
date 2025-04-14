@@ -18,7 +18,7 @@ class PackageFactory extends Factory
      */
     public function definition(): array
     {
-        $user = User::inRandomOrder()->first();
+        $user = User::where('is_admin', 0)->inRandomOrder()->first();
         $transport = Transport::inRandomOrder()->first();
         $weight = fake()->randomFloat(2, 0, 10);
         $weightPrice = 7;
