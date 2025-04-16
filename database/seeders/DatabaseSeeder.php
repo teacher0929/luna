@@ -35,11 +35,11 @@ class DatabaseSeeder extends Seeder
             ->create();
 
         Transport::factory()
-            ->count(10)
+            ->count(50)
             ->create();
 
         Package::factory()
-            ->count(100)
+            ->count(500)
             ->create();
 
         $this->call([

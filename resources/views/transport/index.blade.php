@@ -3,7 +3,7 @@
     Transports
 @endsection
 @section('content')
-    <div class="h3">
+    <div class="h3 mb-3">
         Transports
     </div>
 

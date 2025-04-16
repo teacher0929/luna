@@ -3,7 +3,7 @@
     Packages
 @endsection
 @section('content')
-    <div class="h3">
+    <div class="h3 mb-3">
         Packages
     </div>
 
