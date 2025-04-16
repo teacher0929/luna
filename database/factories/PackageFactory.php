@@ -32,7 +32,7 @@ class PackageFactory extends Factory
             'weight_price' => $weightPrice,
             'total_price' => $weight * $weightPrice,
             'note' => fake()->boolean(50)
-                ? fake()->paragraph(fake()->numberBetween(1, 3))
+                ? fake()->paragraph(1)
                 : null,
             'status' => $transport->status < 3
                 ? $transport->status

@@ -34,7 +34,7 @@ class Transport extends Model
 
     public function getName()
     {
-        return $this->code;
+        return $this->id . ' ' . $this->code;
     }
 
     public function getStatus()
@@ -45,14 +45,5 @@ class Transport extends Model
             'Arrived Ashgabat',
             'Ashgabat Warehouse',
         ][$this->status];
-    }
-
-
-    public function getPaymentStatus()
-    {
-        return [
-            'Unpaid',
-            'Paid',
-        ][$this->payment_status];
     }
 }

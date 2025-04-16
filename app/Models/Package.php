@@ -40,7 +40,7 @@ class Package extends Model
 
     public function getName()
     {
-        return $this->code;
+        return $this->id . ' ' . $this->code;
     }
 
     public function getStatus()
@@ -53,7 +53,6 @@ class Package extends Model
             'Preparing',
             'Ready',
             'Delivered',
-            'Lost',
         ][$this->status];
     }
 

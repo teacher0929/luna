@@ -26,15 +26,9 @@
             <tr>
                 <td>{{ $package->id }}</td>
                 <td>{{ $package->user->getName() }}</td>
-                <td class="font-monospace">{{ $package->transport->getName() }}</td>
-                <td class="font-monospace">
-                    <div>{{ $package->code }}</div>
-                    <div>{{ $package->barcode }}</div>
-                </td>
-                <td>
-                    <div>{{ $package->weight }}</div>
-                    <div>{{ $package->weight_price }}</div>
-                </td>
+                <td class="font-monospace text-danger">{{ $package->transport->getName() }}</td>
+                <td class="font-monospace text-primary">{{ $package->getName() }}</td>
+                <td>{{ $package->weight }}</td>
                 <td>{{ $package->total_price }}</td>
                 <td>{{ $package->getStatus() }}</td>
                 <td class="table-{{ $package->getPaymentStatusColor() }}">{{ $package->getPaymentStatus() }}</td>

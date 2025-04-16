@@ -19,7 +19,7 @@ class TransportFactory extends Factory
         return [
             'code' => str(str()->random(10))->upper(),
             'note' => fake()->boolean(50)
-                ? fake()->paragraph(fake()->numberBetween(1, 3))
+                ? fake()->paragraph(1)
                 : null,
             'status' => fake()->numberBetween(0, 3),
         ];

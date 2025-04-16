@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 
 class PackageController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $packages = Package::orderBy('id', 'desc')
+        $packages = Package::where('transport_id', $request->transport)
+            ->orderBy('id', 'desc')
             ->with('user', 'transport')
             ->get();
 
