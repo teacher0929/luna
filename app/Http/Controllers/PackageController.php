@@ -9,10 +9,23 @@ class PackageController extends Controller
 {
     public function index(Request $request)
     {
-        $packages = Package::where('transport_id', $request->transport)
+        $request->validate([
+            'transport' => ['nullable', 'integer', 'min:1'],
+            'status' => ['nullable', 'integer', 'between:0,6'],
+        ]);
+        $f_transport = $request->has('transport') ? $request->transport : null;
+        $f_status = $request->has('status') ? $request->status : null;
+
+        $packages = Package::when(isset($f_transport), function ($query) use ($f_transport) {
+            return $query->where('transport_id', $f_transport);
+        })
+            ->when(isset($f_status), function ($query) use ($f_status) {
+                return $query->where('status', $f_status);
+            })
             ->orderBy('id', 'desc')
             ->with('user', 'transport')
-            ->get();
+            ->paginate(10)
+            ->withQueryString();
 
         return view('package.index')
             ->with([

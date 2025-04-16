@@ -11,7 +11,8 @@ class TransportController extends Controller
     {
         $transports = Transport::orderBy('id', 'desc')
             ->withCount('packages')
-            ->get();
+            ->paginate(10)
+            ->withQueryString();
 
         return view('transport.index')
             ->with([
