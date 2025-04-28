@@ -8,9 +8,11 @@
         <div class="collapse navbar-collapse" id="navbars">
             @auth
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('transports.index') }}">Transports</a>
-                    </li>
+                   @if(auth()->user()->is_admin)
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('transports.index') }}">Transports</a>
+                        </li>
+                    @endif
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('packages.index') }}">Packages</a>
                     </li>
@@ -18,7 +20,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="#" onclick="event.preventDefault(); document.getElementById('logout').submit();">
-                            {{ auth()->user()->username }} Logout
+                            {{ auth()->user()->getName() }} Logout
                         </a>
                         <form method="POST" action="{{ route('logout') }}" id="logout">
                             @csrf

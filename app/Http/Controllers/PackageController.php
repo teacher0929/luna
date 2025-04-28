@@ -16,9 +16,12 @@ class PackageController extends Controller
         $f_transport = $request->has('transport') ? $request->transport : null;
         $f_status = $request->has('status') ? $request->status : null;
 
-        $packages = Package::when(isset($f_transport), function ($query) use ($f_transport) {
-            return $query->where('transport_id', $f_transport);
+        $packages = Package::when(!auth()->user()->is_admin, function ($query) {
+            return $query->where('user_id', auth()->id());
         })
+            ->when(isset($f_transport), function ($query) use ($f_transport) {
+                return $query->where('transport_id', $f_transport);
+            })
             ->when(isset($f_status), function ($query) use ($f_status) {
                 return $query->where('status', $f_status);
             })
@@ -36,7 +39,10 @@ class PackageController extends Controller
 
     public function show($id)
     {
-        $package = Package::findOrFail($id);
+        $package = Package::when(!auth()->user()->is_admin, function ($query) {
+            return $query->where('user_id', auth()->id());
+        })
+            ->findOrFail($id);
 
         return view('package.show')
             ->with([

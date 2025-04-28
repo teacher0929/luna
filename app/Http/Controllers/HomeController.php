@@ -11,30 +11,34 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $transports = [
-            [
-                'status' => 0,
-                'name' => 'Beijing Warehouse',
-                'count' => Transport::where('status', 0)->count(),
-            ],
-            [
-                'status' => 1,
-                'name' => 'Departed Beijing',
-                'count' => Transport::where('status', 1)->count(),
-            ],
-            [
-                'status' => 2,
-                'name' => 'Arrived Ashgabat',
-                'count' => Transport::where('status', 2)->count(),
-            ],
-            [
-                'status' => 3,
-                'name' => 'Ashgabat Warehouse',
-                'count' => Transport::where('status', 3)->count(),
-            ],
-        ];
+        if (auth()->user()->is_admin) {
+            $transports = collect([
+                [
+                    'status' => 0,
+                    'name' => 'Beijing Warehouse',
+                    'count' => Transport::where('status', 0)->count(),
+                ],
+                [
+                    'status' => 1,
+                    'name' => 'Departed Beijing',
+                    'count' => Transport::where('status', 1)->count(),
+                ],
+                [
+                    'status' => 2,
+                    'name' => 'Arrived Ashgabat',
+                    'count' => Transport::where('status', 2)->count(),
+                ],
+                [
+                    'status' => 3,
+                    'name' => 'Ashgabat Warehouse',
+                    'count' => Transport::where('status', 3)->count(),
+                ],
+            ]);
+        } else {
+            $transports = collect([]);
+        }
 
-        $packages = [
+        $packages = collect([
             [
                 'status' => 0,
                 'name' => 'Beijing Warehouse',
@@ -70,7 +74,7 @@ class HomeController extends Controller
                 'name' => 'Delivered',
                 'count' => Package::where('status', 6)->count(),
             ],
-        ];
+        ]);
 
         return view('home.index')
             ->with([

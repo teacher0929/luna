@@ -4,9 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Transport;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class TransportController extends Controller
+class TransportController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('is_admin', only: ['index']),
+        ];
+    }
+
     public function index(Request $request)
     {
         $request->validate([

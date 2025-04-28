@@ -40,6 +40,7 @@ Route::middleware('auth')
             });
 
         Route::controller(TransportController::class)
+            ->middleware('is_admin')
             ->prefix('transports')
             ->name('transports.')
             ->group(function () {
